@@ -15,19 +15,18 @@ export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <motion.header 
+    <motion.header
       initial={{ height: isHome ? "100vh" : 128 }}
-      animate={{ 
+      animate={{
         height: isHome ? "100vh" : 128,
-        backgroundColor: isHome ? "rgba(0,0,0,0)" : "#32B3EE"
+        backgroundColor: isHome ? "rgba(0,0,0,0)" : "#32B3EE",
       }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="relative w-full overflow-hidden"
     >
-      
       <AnimatePresence>
         {isHome && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -41,18 +40,23 @@ export function Header() {
               className="object-cover"
               priority
             />
-            
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2, duration: 1 }}
               className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white flex flex-col items-center gap-2"
             >
-              <span className="text-sm font-light tracking-widest uppercase opacity-80">Descubre más</span>
+              <span className="text-sm font-light tracking-widest uppercase opacity-80">
+                Descubre más
+              </span>
               <motion.div
                 animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 1.5,
+                  ease: "easeInOut",
+                }}
               >
                 <ChevronDown className="w-8 h-8 opacity-80" />
               </motion.div>
@@ -63,14 +67,13 @@ export function Header() {
 
       <nav className="relative z-10 w-full pt-2">
         <div className="container mx-auto px-6 flex items-center justify-between relative">
-          
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="relative block w-64 h-24 md:w-80 md:h-28 hover:opacity-90 hover:scale-105 transition-all duration-300"
             >
               <Image
@@ -83,7 +86,7 @@ export function Header() {
             </Link>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20, x: "-50%" }}
             animate={{ opacity: 1, y: 0, x: "-50%" }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
@@ -95,11 +98,11 @@ export function Header() {
                   key={item.href}
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.4 + (index * 0.1) }}
+                  transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
                 >
                   <Link
                     href={item.href}
-                    className="font-semibold text-slate-800 hover:text-primary transition-colors relative group text-sm tracking-wide"
+                    className="font-semibold text-slate-800 relative group text-sm tracking-wide"
                   >
                     {item.title}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
@@ -113,9 +116,7 @@ export function Header() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.8 }}
             >
-              <Button 
-                className="rounded-full px-8 py-5 bg-white hover:bg-slate-100 text-primary hover:text-primary/90 transition-all duration-300 font-bold shadow-md"
-              >
+              <Button className="rounded-full px-8 py-5 bg-white hover:bg-slate-100 text-primary hover:text-primary/90 transition-all duration-300 font-bold shadow-md">
                 Login
               </Button>
             </motion.div>
@@ -131,7 +132,6 @@ export function Header() {
               <Menu className="w-8 h-8" />
             </Button>
           </div>
-
         </div>
       </nav>
 
@@ -154,22 +154,25 @@ export function Header() {
                 <X className="w-8 h-8" />
               </Button>
             </div>
-            
+
             <div className="flex flex-col items-center justify-center flex-1 gap-8">
               {NAVBAR.map((item, index) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + (index * 0.1) }}
+                  transition={{ delay: 0.1 + index * 0.1 }}
                 >
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-3xl font-bold text-white hover:text-white/80 transition-colors"
-                  >
-                    {item.title}
-                  </Link>
+               <Link
+  href={item.href}
+  className="font-semibold text-slate-800 relative group text-sm tracking-wide"
+>
+  {item.title}
+  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] 
+                   bg-slate-800/60
+                   transition-all duration-300 group-hover:w-full" />
+</Link>
+
                 </motion.div>
               ))}
               <motion.div
@@ -178,7 +181,7 @@ export function Header() {
                 transition={{ delay: 0.5 }}
                 className="mt-8"
               >
-                <Button 
+                <Button
                   className="rounded-full px-12 py-6 text-xl bg-white text-[#32B3EE] hover:bg-white/90 font-bold shadow-lg"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -189,7 +192,6 @@ export function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </motion.header>
   );
 }

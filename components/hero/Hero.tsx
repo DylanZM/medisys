@@ -18,21 +18,21 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-[#32B3EE] font-semibold text-sm uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider">
               <Activity className="w-4 h-4" />
               <span>Salud de vanguardia</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1]">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-black leading-[1.1]">
            Cuidado Médico <br/>
-              <span className="text-[#32B3EE]">Facinante</span>
+              <span className="text-primary">Facinante</span>
             </h1>
 
-            <p className="text-lg text-slate-600 max-w-xl leading-relaxed">
+            <p className="text-lg text-foreground max-w-xl leading-relaxed">
 Experimente una nueva era en la atención médica. Le conectamos con los mejores especialistas mediante tecnología de vanguardia y un trato humano.            </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="rounded-full bg-[#32B3EE] hover:bg-[#1e8bc0] text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all">
+              <Button size="lg" className="rounded-full bg-primary hover:bg-[#1e8bc0] text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all">
                 <CalendarCheck className="mr-2 w-5 h-5" />
                 Agendar Consulta
               </Button>
@@ -44,13 +44,13 @@ Experimente una nueva era en la atención médica. Le conectamos con los mejores
 
             <div className="pt-8 flex items-center gap-12">
               <div>
-                <h4 className="text-3xl font-bold text-slate-900">10k+</h4>
+                <h4 className="text-3xl font-bold text-black">10k+</h4>
                 <p className="text-sm text-slate-500 font-medium">Pacientes Atendidos</p>
               </div>
             
               <div>
-                <h4 className="text-3xl font-bold text-slate-900">50+</h4>
-                <p className="text-sm text-slate-500 font-medium">Especialistas</p>
+                <h4 className="text-3xl font-bold text-black">50+</h4>
+                <p className="text-sm text-foreground font-medium">Especialistas</p>
               </div>
             </div>
           </motion.div>
@@ -60,10 +60,10 @@ Experimente una nueva era en la atención médica. Le conectamos con los mejores
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative h-[500px] lg:h-[700px] w-full rounded-3xl overflow-hidden shadow-2xl"
+            className="relative h-[550px] lg:h-[550px] w-full rounded-3xl overflow-hidden shadow-2xl"
           >
             <Image
-              src="/banners/banner1.webp"
+              src="/banners/medicos.jpeg"
               alt="Medical Team"
               fill
               className="object-cover"
@@ -82,8 +82,8 @@ Experimente una nueva era en la atención médica. Le conectamos con los mejores
                 <Users className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-slate-500 font-medium uppercase">Equipe</p>
-                <p className="text-sm font-bold text-slate-900">Médicos Certificados</p>
+                <p className="text-xs text-foreground font-medium uppercase">Equipo</p>
+                <p className="text-sm font-bold text-black">Médicos Certificados</p>
               </div>
             </motion.div>
           </motion.div>
