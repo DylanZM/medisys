@@ -1,11 +1,17 @@
-import { Hero } from "@/components/hero/Hero";
-import Testimonial from "@/components/hero/Testimonial";
+import { Hero } from "@/components/home/Hero";
+import Testimonial from "@/components/home/Testimonial";
+import { Services } from "@/components/home/Services";
+import { Features } from "@/components/home/Features";
+import { Footer } from "@/components/home/footer/Footer";
 
 export default function Home() {
   return (
-    <main>
+    <main className="bg-white">
       <Hero />
-      <Testimonial />1
+      <Features />
+      <Services />
+      <Testimonial />
+      <Footer />
     </main>
   );
 }

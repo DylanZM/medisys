@@ -17,6 +17,8 @@
   --color-surface-glass-border: var(--surface-glass-border);
 
   --radius-md: var(--radius);
+  --radius-4xl: 2rem;
+  --radius-5xl: 2.5rem;
 }
 
 /* =========================
@@ -27,15 +29,15 @@
 
   /* Base */
   --background: #ffffff;
-  --text: #45556C;
+  --text: #45556c;
 
   /* Brand */
-  --primary: #32B3EE;
+  --primary: #32b3ee;
   --primary-foreground: #ffffff;
 
   /* Glass UI */
-  --surface-glass: rgb(255 255 255 / 0.20);
-  --surface-glass-border: rgb(255 255 255 / 0.30);
+  --surface-glass: rgb(255 255 255 / 0.2);
+  --surface-glass-border: rgb(255 255 255 / 0.3);
 }
 
 /* =========================
@@ -45,11 +47,11 @@
   --background: #0f172a;
   --text: #e5e7eb;
 
-  --primary: #32B3EE;
+  --primary: #32b3ee;
   --primary-foreground: #ffffff;
 
-  --surface-glass: rgb(255 255 255 / 0.10);
-  --surface-glass-border: rgb(255 255 255 / 0.20);
+  --surface-glass: rgb(255 255 255 / 0.1);
+  --surface-glass-border: rgb(255 255 255 / 0.2);
 }
 
 /* =========================

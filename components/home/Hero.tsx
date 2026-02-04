@@ -3,9 +3,11 @@
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
-import { CalendarCheck, ArrowRight, Users, Activity } from "lucide-react";
+import { heroData } from "@/data/hero";
 
 export function Hero() {
+  const { badge, title, subtitle, description, ctas, stats, mainImage, teamCard } = heroData;
+
   return (
     <section className="relative w-full bg-white py-12 md:py-24 lg:py-32 overflow-hidden">
       <div className="container mx-auto px-6">
@@ -19,39 +21,37 @@ export function Hero() {
             className="space-y-8"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider">
-              <Activity className="w-4 h-4" />
-              <span>Salud de vanguardia</span>
+              <badge.icon className="w-4 h-4" />
+              <span>{badge.text}</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-black leading-[1.1]">
-           Cuidado Médico <br/>
-              <span className="text-primary">Facinante</span>
+              {title} <br/>
+              <span className="text-primary">{subtitle}</span>
             </h1>
 
             <p className="text-lg text-foreground max-w-xl leading-relaxed">
-Experimente una nueva era en la atención médica. Le conectamos con los mejores especialistas mediante tecnología de vanguardia y un trato humano.            </p>
+              {description}
+            </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="rounded-full bg-primary hover:bg-[#1e8bc0] text-white px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all">
-                <CalendarCheck className="mr-2 w-5 h-5" />
-                Agendar Consulta
+                <ctas.primary.icon className="mr-2 w-5 h-5" />
+                {ctas.primary.text}
               </Button>
               <Button variant="outline" size="lg" className="rounded-full border-slate-200 text-slate-700 hover:bg-slate-50 px-8 py-6 text-lg">
-                Saber Más
-                <ArrowRight className="ml-2 w-5 h-5" />
+                {ctas.secondary.text}
+                <ctas.secondary.icon className="ml-2 w-5 h-5" />
               </Button>
             </div>
 
             <div className="pt-8 flex items-center gap-12">
-              <div>
-                <h4 className="text-3xl font-bold text-black">10k+</h4>
-                <p className="text-sm text-slate-500 font-medium">Pacientes Atendidos</p>
-              </div>
-            
-              <div>
-                <h4 className="text-3xl font-bold text-black">50+</h4>
-                <p className="text-sm text-foreground font-medium">Especialistas</p>
-              </div>
+              {stats.map((stat, idx) => (
+                <div key={idx}>
+                  <h4 className="text-3xl font-bold text-black">{stat.value}</h4>
+                  <p className="text-sm text-foreground font-medium opacity-60">{stat.label}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
 
@@ -63,7 +63,7 @@ Experimente una nueva era en la atención médica. Le conectamos con los mejores
             className="relative h-[550px] lg:h-[550px] w-full rounded-3xl overflow-hidden shadow-2xl"
           >
             <Image
-              src="/banners/medicos.jpeg"
+              src={mainImage}
               alt="Medical Team"
               fill
               className="object-cover"
@@ -79,11 +79,11 @@ Experimente una nueva era en la atención médica. Le conectamos con los mejores
               className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/20 flex items-center gap-4 max-w-xs"
             >
               <div className="bg-green-100 p-3 rounded-full text-green-600">
-                <Users className="w-6 h-6" />
+                <teamCard.icon className="w-6 h-6" />
               </div>
               <div>
-                <p className="text-xs text-foreground font-medium uppercase">Equipo</p>
-                <p className="text-sm font-bold text-black">Médicos Certificados</p>
+                <p className="text-xs text-foreground font-medium uppercase">{teamCard.label}</p>
+                <p className="text-sm font-bold text-black">{teamCard.value}</p>
               </div>
             </motion.div>
           </motion.div>

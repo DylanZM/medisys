@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { NAVBAR } from "@/data/header";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { Menu, X, LogIn, ChevronRight } from "lucide-react";
 
 export function Header(): React.ReactElement {
