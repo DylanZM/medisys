@@ -35,7 +35,7 @@ export function Header(): React.ReactElement {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className="group relative text-sm font-bold transition-all text-slate-600 hover:text-slate-900"
+                    className="group relative text-sm font-bold transition-all text-foreground hover:text-foreground"
                   >
                     {item.title}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-full" />
@@ -45,12 +45,6 @@ export function Header(): React.ReactElement {
             </nav>
 
             <div className="hidden md:flex items-center gap-4">
-              <Button 
-                variant="ghost" 
-                className="rounded-full px-6 font-bold text-foreground hover:bg-slate-100/50"
-              >
-                Registrarse
-              </Button>
               <Button className="rounded-full px-8 bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all duration-300 flex items-center gap-2">
                 <LogIn className="w-4 h-4" />
                 Iniciar Sesión
@@ -59,7 +53,7 @@ export function Header(): React.ReactElement {
 
             <button
               onClick={() => setOpen(true)}
-              className="md:hidden p-2 text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+              className="md:hidden p-2 text-foreground hover:bg-slate-100 rounded-lg transition-colors"
             >
               <Menu className="w-7 h-7" />
             </button>
@@ -68,7 +62,7 @@ export function Header(): React.ReactElement {
       </header>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-md md:hidden">
+        <div className="fixed inset-0 z-50 bg-foreground/40 backdrop-blur-md md:hidden">
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-white shadow-2xl p-8 flex flex-col">
             <div className="flex justify-between items-center mb-12">
               <div className="relative w-32 h-8">
@@ -83,13 +77,9 @@ export function Header(): React.ReactElement {
                 onClick={() => setOpen(false)}
                 className="p-2 hover:bg-slate-100 rounded-full transition-colors"
               >
-                <X className="w-7 h-7 text-slate-700" />
+                <X className="w-7 h-7 text-foreground" />
               </button>
             </div>
-
-            <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 px-2">
-              Navegación
-            </span>
             
             <nav className="flex flex-col gap-2">
               {NAVBAR.map((item) => {
@@ -107,19 +97,10 @@ export function Header(): React.ReactElement {
                 );
               })}
             </nav>
-
-            <div className="mt-auto space-y-4">
-              <Button className="w-full rounded-2xl py-6 font-bold shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
-                <LogIn className="w-5 h-5" />
-                Iniciar Sesión
-              </Button>
-              <p className="text-center text-sm text-slate-500 font-medium">
-                ¿No tienes cuenta? <span className="text-primary font-bold cursor-pointer hover:underline">Regístrate</span>
-              </p>
-            </div>
           </div>
         </div>
       )}
     </>
   );
 }
+
