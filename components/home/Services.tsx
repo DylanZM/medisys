@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { services } from "@/data/services";
 
@@ -34,48 +35,46 @@ export function Services() {
           >
             <span>Nuestras Especialidades</span>
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-4"
           >
-            Servicios Médicos de <br/>
+            Servicios Médicos de <br />
             <span className="text-primary">Clase Mundial</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto"
+            className="text-lg text-foreground max-w-2xl mx-auto font-medium"
           >
             Ofrecemos una amplia gama de cuidados especializados, combinando experiencia médica con las últimas innovaciones tecnológicas.
           </motion.p>
         </div>
-
-        <motion.div 
-          variants={containerVariants}
+        <motion.div
           initial="hidden"
           whileInView="visible"
+          variants={containerVariants}
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="flex justify-center items-center"
         >
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -8, boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1)" }}
-              className="p-8 rounded-3xl border border-slate-100 bg-white transition-all duration-300"
-            >
-              <div className={`w-14 h-14 rounded-2xl ${service.color} flex items-center justify-center mb-6`}>
-                <service.icon size={28} />
-              </div>
-              <h3 className="text-xl font-bold text-black mb-3">{service.title}</h3>
-              <p className="text-slate-600 leading-relaxed font-medium">
-                {service.description}
-              </p>
-            </motion.div>
+          {services.slice(0, 6).map((service, index) => (
+            <React.Fragment key={index}>
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ scale: 1.15 }}
+                className="text-primary transition-all duration-300 flex flex-col items-center justify-center px-8"
+              >
+                <service.icon size={64} />
+                <span className="mt-4 text-lg font-semibold text-foreground">{service.title}</span>
+              </motion.div>
+              {index < 5 && (
+                <div className="h-24 border-l border-slate-200 mx-2"></div>
+              )}
+            </React.Fragment>
           ))}
         </motion.div>
       </div>
