@@ -31,7 +31,7 @@ export function Services() {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-muted text-primary font-semibold text-sm uppercase tracking-wider mb-4 border border-border-subtle"
           >
             <span>Nuestras Especialidades</span>
           </motion.div>
@@ -49,7 +49,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-foreground max-w-2xl mx-auto font-medium"
+            className="text-lg text-text-muted max-w-2xl mx-auto font-medium"
           >
             Ofrecemos una amplia gama de cuidados especializados, combinando experiencia médica con las últimas innovaciones tecnológicas.
           </motion.p>
@@ -72,7 +72,7 @@ export function Services() {
                 <span className="mt-4 text-lg font-semibold text-foreground">{service.title}</span>
               </motion.div>
               {index < 5 && (
-                <div className="h-24 border-l border-slate-200 mx-2"></div>
+                <div className="h-24 border-l border-border-subtle mx-2"></div>
               )}
             </React.Fragment>
           ))}

@@ -46,15 +46,15 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="pt-12 flex flex-wrap items-center gap-12 border-t border-slate-100">
+            <div className="pt-12 grid grid-cols-2 gap-6 border-t border-border-subtle">
               {stats.map((stat, idx) => (
                 <div key={idx} className="flex items-center gap-4">
-                  <div className="text-primary">
+                  <div className="bg-white p-3 rounded-xl shadow-sm border border-border-subtle">
                     {idx === 0 ? <Users className="w-6 h-6" /> : <Activity className="w-6 h-6" />}
                   </div>
                   <div>
                     <h4 className="text-3xl font-black text-black racking-tight leading-none mb-1">{stat.value}</h4>
-                    <p className="text-[10px] text-foreground font-bold uppercase tracking-widest">{stat.label}</p>
+                    <p className="text-[10px] text-text-muted font-bold uppercase tracking-widest">{stat.label}</p>
                   </div>
                 </div>
               ))}

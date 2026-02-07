@@ -12,6 +12,13 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
 
+  /* Semantic UI Tokens */
+  --color-border-subtle: var(--border-subtle);
+  --color-bg-muted: var(--bg-muted);
+  --color-text-muted: var(--text-muted);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
   --color-surface-glass: var(--surface-glass);
   --color-surface-glass-border: var(--surface-glass-border);
 
@@ -34,6 +41,13 @@
   --primary: #32b3ee;
   --primary-foreground: #ffffff;
 
+  /* Semantic UI */
+  --border-subtle: #f1f5f9; /* slate-100 */
+  --bg-muted: #f8fafc; /* slate-50 */
+  --text-muted: #64748b; /* slate-500 */
+  --card: #ffffff;
+  --card-foreground: #45556c;
+
   /* Glass UI */
   --surface-glass: rgb(255 255 255 / 0.2);
   --surface-glass-border: rgb(255 255 255 / 0.3);
@@ -48,6 +62,13 @@
 
   --primary: #32b3ee;
   --primary-foreground: #ffffff;
+
+  /* Semantic UI */
+  --border-subtle: #1e293b; /* slate-800 */
+  --bg-muted: #1e293b; /* slate-800 */
+  --text-muted: #94a3b8; /* slate-400 */
+  --card: #1e293b;
+  --card-foreground: #e5e7eb;
 
   --surface-glass: rgb(255 255 255 / 0.1);
   --surface-glass-border: rgb(255 255 255 / 0.2);

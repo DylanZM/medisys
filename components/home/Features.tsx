@@ -17,7 +17,7 @@ export function Features() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 border border-slate-100 rounded-lg overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 border border-border-subtle rounded-lg overflow-hidden">
           {features.map((feature, index) => (
             <motion.div
               key={index}
@@ -28,14 +28,14 @@ export function Features() {
                 duration: 0.5,
                 delay: index * 0.1,
               }}
-              className={`flex group border-slate-100
+              className={`flex group border-border-subtle
                 ${index % 2 !== 0 ? "md:border-l" : ""} 
                 ${index > 1 ? "border-t" : ""}
                 ${index > 0 && index % 2 === 0 ? "border-t md:border-t" : ""}
                 ${index === 1 ? "border-t md:border-t-0" : ""}
               `}
             >
-              <div className="p-8 sm:p-12 border-r border-slate-100 flex items-center justify-center min-w-[120px] sm:min-w-[160px] bg-white group-hover:bg-slate-50/50 transition-colors">
+              <div className="p-8 sm:p-12 border-r border-border-subtle flex items-center justify-center min-w-[120px] sm:min-w-[160px] bg-white group-hover:bg-bg-muted transition-colors">
                 <feature.icon
                   size={48}
                   className="text-slate-900 group-hover:scale-110 transition-transform duration-300"
@@ -43,11 +43,11 @@ export function Features() {
                 />
               </div>
 
-              <div className="p-8 sm:p-12 flex flex-col justify-center  bg-white group-hover:bg-slate-50/30 transition-colors">
+              <div className="p-8 sm:p-12 flex flex-col justify-center  bg-white group-hover:bg-bg-muted transition-colors">
                 <h3 className="font-bold text-xl text-slate-900 mb-3 group-hover:text-primary transition-colors">
                   {feature.title}
                 </h3>
-                <p className="text-slate-500 leading-relaxed font-medium">
+                <p className="text-text-muted leading-relaxed font-medium">
                   {feature.description}
                 </p>
               </div>

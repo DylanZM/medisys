@@ -24,7 +24,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-slate-400 pt-20 pb-10 px-4 sm:px-6 lg:px-8 border-t border-slate-900">
+    <footer className="bg-black text-text-muted pt-20 pb-10 px-4 sm:px-6 lg:px-8 border-t border-slate-900">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           {/* Brand Section */}
@@ -35,7 +35,7 @@ export function Footer() {
               </div>
               <span className="text-2xl font-bold text-white tracking-tight">MediSys</span>
             </Link>
-            <p className="text-slate-400 leading-relaxed font-medium">
+            <p className="text-text-muted leading-relaxed font-medium">
               {footerData.description}
             </p>
             <div className="flex gap-4">

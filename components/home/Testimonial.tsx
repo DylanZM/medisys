@@ -1,12 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { testimonials } from "@/data/testimonial";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
-
-const anonymousFallbackImage =
-  "https://placehold.co/48x48/6B7280/FFFFFF?text=AA";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -28,14 +26,14 @@ const itemVariants = {
 
 function Testimonial() {
   return (
-    <section className="bg-slate-50 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="bg-bg-muted py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-primary font-semibold text-sm uppercase tracking-wider mb-4 border border-border-subtle"
           >
             <span>Opiniones Reales</span>
           </motion.div>
@@ -54,7 +52,7 @@ function Testimonial() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-foreground max-w-2xl mx-auto"
+            className="text-lg text-text-muted max-w-2xl mx-auto font-medium"
           >
             La confianza de nuestros pacientes es nuestro mayor orgullo. Conoce sus experiencias con nuestro equipo médico.
           </motion.p>
@@ -72,44 +70,39 @@ function Testimonial() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
+              className="h-full"
             >
-              <Card className="h-full bg-white rounded-3xl shadow-sm border border-slate-100 p-8 flex flex-col group transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
+              <Card className="rounded-3xl p-8 border-border-subtle shadow-sm bg-card hover:shadow-xl transition-all duration-300 relative group flex flex-col h-full ring-0 outline-hidden">
                 <CardHeader className="p-0 mb-6">
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 mb-6">
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
                     ))}
                   </div>
-                </CardHeader>
-                <CardContent className="p-0 flex flex-col h-full">
-                  <CardTitle className="sr-only">Testimonial from {testimonial.name}</CardTitle>
-                  <p className="text-slate-700 font-medium leading-relaxed mb-8 relative z-10 grow">
-                    "{testimonial.text}"
-                  </p>
-                  
-                  <div className="flex items-center mt-auto">
-                    <div className="relative w-12 h-12 mr-4">
-                      <img
+
+                  <div className="flex items-center gap-4">
+                    <div className="relative w-14 h-14 rounded-2xl overflow-hidden shadow-sm border border-border-subtle">
+                      <Image
                         src={testimonial.image}
                         alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/10"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.onerror = null;
-                          target.src = anonymousFallbackImage;
-                        }}
+                        fill
+                        className="object-cover"
                       />
-                      <div className="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full">
-                        <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-                      </div>
                     </div>
                     <div>
-                      <p className="font-bold text-black leading-none mb-1">
+                      <p className="font-bold text-black group-hover:text-primary transition-colors leading-none mb-1">
                         {testimonial.name}
                       </p>
-                      <p className="text-sm text-foreground font-medium">Paciente Verificado</p>
+                      <p className="text-xs text-text-muted font-bold uppercase tracking-wider">Paciente Verificado</p>
                     </div>
                   </div>
+                </CardHeader>
+                
+                <CardContent className="p-0 flex flex-col grow">
+                  <CardTitle className="sr-only">Testimonial from {testimonial.name}</CardTitle>
+                  <p className="text-foreground font-medium leading-relaxed relative z-10 grow mb-10">
+                    "{testimonial.text}"
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
