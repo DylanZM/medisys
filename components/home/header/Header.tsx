@@ -44,14 +44,16 @@ export function Header(): React.ReactElement {
               })}
             </nav>
 
-            <div className="hidden md:flex items-center gap-4">
-              <Link href="/login"> 
-              <Button className="rounded-full px-8 bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all duration-300 flex items-center gap-2">
-                <UserRound className="w-4 h-4" />
-                Iniciar Sesión
-              </Button>
-              </Link>
-            </div>
+            {!pathname.startsWith("/admin") && (
+              <div className="hidden md:flex items-center gap-4">
+                <Link href="/login"> 
+                  <Button className="rounded-full px-8 bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all duration-300 flex items-center gap-2">
+                    <UserRound className="w-4 h-4" />
+                    Iniciar Sesión
+                  </Button>
+                </Link>
+              </div>
+            )}
 
             <button
               onClick={() => setOpen(true)}

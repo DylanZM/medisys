@@ -30,9 +30,13 @@ export function AppSidebar({ role }: AppSidebarProps) {
   const filteredNavItems = navItems.filter((item) => item.roles.includes(role));
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-slate-100 bg-[#F7F8F9]">
-      <SidebarHeader className="h-16 flex items-center px-4 border-b border-slate-50 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:justify-center">
-        <div className="flex items-center gap-2 group-data-[collapsible=icon]:hidden -ml-1">
+    <Sidebar 
+      collapsible="icon" 
+      className="border-r border-slate-100 bg-[#F7F8F9] top-20 h-[calc(100vh-80px)]"
+      style={{ "--sidebar-width": "14rem" } as React.CSSProperties}
+    >
+      <SidebarHeader className="h-20 flex items-center px-4 border-b border-slate-50 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:justify-center">
+        <div className="flex items-center gap-2 group-data-[collapsible=icon]:hidden -ml-2">
           <SidebarTrigger className="text-slate-500 hover:text-primary transition-colors" />
           <span className="font-bold text-slate-700 text-sm">Admin</span>
         </div>
