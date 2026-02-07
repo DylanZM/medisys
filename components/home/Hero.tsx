@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import { heroData } from "@/data/hero";
 import { Users, Activity } from "lucide-react";
-
+import { Badge } from "../ui/badge";
 export function Hero() {
   const { badge, title, subtitle, description, ctas, stats, mainImage, teamCard } = heroData;
 
@@ -21,10 +21,12 @@ export function Hero() {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider">
-              <badge.icon className="w-4 h-4" />
-              <span>{badge.text}</span>
-            </div>
+
+              <Badge className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider">
+                {badge.icon && <badge.icon className="w-4 h-4" />}
+                {badge.text}
+              </Badge>
+          
 
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-black leading-[1.1]">
               {title} <br/>
