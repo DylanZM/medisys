@@ -27,6 +27,12 @@ interface AppSidebarProps {
 export function AppSidebar({ role }: AppSidebarProps) {
   const pathname = usePathname();
 
+  const roleLabels: Record<UserRole, string> = {
+    ADMIN: "Admin",
+    DOCTOR: "Médico",
+    ASSISTANT: "Asistente",
+  };
+
   const filteredNavItems = navItems.filter((item) => item.roles.includes(role));
 
   return (
@@ -38,7 +44,7 @@ export function AppSidebar({ role }: AppSidebarProps) {
       <SidebarHeader className="h-20 flex items-center px-4 border-b border-slate-50 group-data-[collapsible=icon]:px-0 group-data-[collapsible=icon]:justify-center">
         <div className="flex items-center gap-2 group-data-[collapsible=icon]:hidden -ml-2">
           <SidebarTrigger className="text-slate-500 hover:text-primary transition-colors" />
-          <span className="font-bold text-slate-700 text-sm">Admin</span>
+          <span className="font-bold text-slate-700 text-sm">{roleLabels[role]}</span>
         </div>
         <div className="hidden group-data-[collapsible=icon]:block">
           <SidebarTrigger className="text-slate-500 hover:text-primary transition-colors" />

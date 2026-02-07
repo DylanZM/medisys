@@ -19,11 +19,12 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
+  // --- ADMIN ROUTES ---
   {
     title: "Dashboard",
     href: "/admin",
     icon: LayoutDashboard,
-    roles: ["ADMIN", "DOCTOR", "ASSISTANT"],
+    roles: ["ADMIN"],
   },
   {
     title: "Usuarios",
@@ -32,34 +33,52 @@ export const navItems: NavItem[] = [
     roles: ["ADMIN"],
   },
   {
-    title: "Citas",
-    href: "/admin/appointments",
-    icon: Calendar,
-    roles: ["ADMIN", "DOCTOR", "ASSISTANT"],
-  },
-  {
     title: "Pacientes",
     href: "/admin/patients",
     icon: UserSquare2,
-    roles: ["ADMIN", "DOCTOR", "ASSISTANT"],
-  },
-  {
-    title: "Historial Clínico",
-    href: "/admin/records",
-    icon: ClipboardList,
-    roles: ["ADMIN", "DOCTOR"],
-  },
-  {
-    title: "Mensajes",
-    href: "/admin/messages",
-    icon: MessageSquare,
-    roles: ["ADMIN", "ASSISTANT"],
-  },
-  {
-    title: "Analíticas",
-    href: "/admin/analytics",
-    icon: Activity,
     roles: ["ADMIN"],
+  },
+  {
+    title: "Citas",
+    href: "/admin/appointments",
+    icon: Calendar,
+    roles: ["ADMIN"],
+  },
+
+  // --- DOCTOR ROUTES ---
+  {
+    title: "Mi Agenda",
+    href: "/doctor/appointments",
+    icon: Calendar,
+    roles: ["DOCTOR"],
+  },
+  {
+    title: "Mis Pacientes",
+    href: "/doctor/patients",
+    icon: UserSquare2,
+    roles: ["DOCTOR"],
+  },
+
+  // --- ASSISTANT ROUTES ---
+  {
+    title: "Agenda Global",
+    href: "/assistant/agenda",
+    icon: Calendar,
+    roles: ["ASSISTANT"],
+  },
+  {
+    title: "Pacientes",
+    href: "/assistant/patients",
+    icon: Users,
+    roles: ["ASSISTANT"],
+  },
+
+  // --- SHARED / COMMON ---
+  {
+    title: "Avisos",
+    href: "#",
+    icon: MessageSquare,
+    roles: ["ADMIN", "DOCTOR", "ASSISTANT"],
   },
   {
     title: "Configuración",

@@ -14,14 +14,24 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 
+import { useAuth } from "@/hooks/use-auth"
+
 export default function LoginPage() {
+  const { login, isLoading: isAuthLoading } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
   const [user, setUser] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Logging in with:", { user, password })
+    setError("")
+    
+    try {
+      await login(user)
+    } catch (err: any) {
+      setError(err.message || "Credenciales inválidas")
+    }
   }
 
   return (
@@ -40,6 +50,11 @@ export default function LoginPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 pt-2 pb-8">
+            {error && (
+              <div className="bg-red-50 border border-red-100 text-red-600 px-4 py-3 rounded-xl text-sm font-medium animate-in fade-in slide-in-from-top-1">
+                {error}
+              </div>
+            )}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <label
@@ -98,10 +113,20 @@ export default function LoginPage() {
               </div>
               <Button
                 type="submit"
+                disabled={isAuthLoading}
                 className="w-full h-12 text-base font-semibold transition-all hover:scale-[1.02] flex items-center justify-center gap-2"
               >
-                <LogIn className="h-5 w-5" />
-                Iniciar Sesión
+                {isAuthLoading ? (
+                  <span className="flex items-center gap-2">
+                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    Cargando...
+                  </span>
+                ) : (
+                  <>
+                    <LogIn className="h-5 w-5" />
+                    Iniciar Sesión
+                  </>
+                )}
               </Button>
             </form>
           </CardContent>

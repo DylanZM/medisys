@@ -174,6 +174,9 @@ export default function AppointmentsPage() {
                       <DropdownMenuItem className="rounded-lg text-sm font-medium text-slate-600 hover:text-primary transition-colors cursor-pointer">
                         Ver Detalles
                       </DropdownMenuItem>
+                      <DropdownMenuItem className="rounded-lg text-sm font-medium text-slate-600 hover:text-primary transition-colors cursor-pointer">
+                        Reasignar Médico
+                      </DropdownMenuItem>
                       <DropdownMenuSeparator className="bg-slate-50" />
                       <DropdownMenuItem className="rounded-lg text-sm font-medium text-red-500 hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer">
                         Cancelar Cita

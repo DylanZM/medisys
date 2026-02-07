@@ -1,10 +1,11 @@
 "use client"
 
+
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
-import { AppSidebar } from "./_components/app-sidebar";
+import { AppSidebar } from "../admin/_components/app-sidebar";
 import { useAuth } from "@/hooks/use-auth";
 
-export default function AdminLayout({
+export default function DoctorLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ export default function AdminLayout({
   const { user, isLoading } = useAuth();
 
   if (isLoading) return <div className="h-screen w-screen flex items-center justify-center bg-white"><div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" /></div>;
-  if (!user) return null; // Should redirect in a real app, but AuthProvider handled first redirect
+  if (!user) return null;
 
   return (
     <SidebarProvider>
