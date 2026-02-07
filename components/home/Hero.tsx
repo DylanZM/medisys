@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { heroData } from "@/data/hero";
 import { Users, Activity } from "lucide-react";
 import { Badge } from "../ui/badge";
+
 export function Hero() {
   const { badge, title, subtitle, description, ctas, stats, mainImage, teamCard } = heroData;
 
@@ -52,10 +53,10 @@ export function Hero() {
               {stats.map((stat, idx) => (
                 <div key={idx} className="flex items-center gap-4">
                   <div className="bg-white p-3 rounded-xl shadow-sm border border-border-subtle">
-                    {idx === 0 ? <Users className="w-6 h-6" /> : <Activity className="w-6 h-6" />}
+                    {idx === 0 ? <Users className="w-6 h-6 text-primary" /> : <Activity className="w-6 h-6 text-primary" />}
                   </div>
                   <div>
-                    <h4 className="text-3xl font-black text-black racking-tight leading-none mb-1">{stat.value}</h4>
+                    <h4 className="text-3xl font-black text-black tracking-tight leading-none mb-1">{stat.value}</h4>
                     <p className="text-[10px] text-text-muted font-bold uppercase tracking-widest">{stat.label}</p>
                   </div>
                 </div>
