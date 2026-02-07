@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { motion } from "framer-motion";
 import { heroData } from "@/data/hero";
+import { Users, Activity } from "lucide-react";
 
 export function Hero() {
   const { badge, title, subtitle, description, ctas, stats, mainImage, teamCard } = heroData;
@@ -45,11 +46,16 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="pt-8 flex items-center gap-12">
+            <div className="pt-12 flex flex-wrap items-center gap-12 border-t border-slate-100">
               {stats.map((stat, idx) => (
-                <div key={idx}>
-                  <h4 className="text-3xl font-bold text-black">{stat.value}</h4>
-                  <p className="text-sm text-foreground font-medium opacity-60">{stat.label}</p>
+                <div key={idx} className="flex items-center gap-4">
+                  <div className="text-primary">
+                    {idx === 0 ? <Users className="w-6 h-6" /> : <Activity className="w-6 h-6" />}
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-black text-black racking-tight leading-none mb-1">{stat.value}</h4>
+                    <p className="text-[10px] text-foreground font-bold uppercase tracking-widest">{stat.label}</p>
+                  </div>
                 </div>
               ))}
             </div>

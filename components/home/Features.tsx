@@ -1,84 +1,58 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
 import { features } from "@/data/features";
 
 export function Features() {
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50">
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-primary font-semibold text-sm uppercase tracking-wider mb-6">
-              <span>¿Por qué elegirnos?</span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-black leading-[1.1] mb-8">
-              Comprometidos con su <br/>
-              <span className="text-primary">Salud y Bienestar</span>
-            </h2>
-            <p className="text-lg text-foreground b-10 leading-relaxed max-w-xl">
-              En MediSys, no solo ofrecemos tratamientos, brindamos una experiencia de cuidado integral centrada en el paciente. Nuestra dedicación a la excelencia nos distingue.
-            </p>
-            
-            <div className="space-y-6">
-              {features.map((feature, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-sm transition-all border border-transparent hover:border-slate-100"
-                >
-                  <div className={`mt-1 ${feature.color}`}>
-                    <feature.icon size={24} />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-black text-lg mb-1">{feature.title}</h3>
-                    <p className="text-foreground leading-relaxed">{feature.description}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-20">
+          <span className="text-primary font-bold uppercase tracking-widest text-sm sm:text-base whitespace-nowrap">
+            ¿Por qué elegirnos?
+          </span>
+          <div className="hidden sm:block w-px h-10 bg-slate-200" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-black uppercase tracking-tight">
+            Somos Calidad
+          </h2>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="relative rounded-5xl overflow-hidden shadow-2xl z-10">
-              <img 
-                src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070" 
-                alt="Medical Equipment" 
-                className="w-full aspect-4/5 object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
-              
-              <div className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-6 rounded-3xl border border-white/20 shadow-xl">
-                <div className="flex items-center gap-4">
-                  <div className="bg-primary/10 p-3 rounded-2xl text-primary">
-                    <Award size={32} />
-                  </div>
-                  <div>
-                    <p className="text-black font-bold text-xl">Certificación ISO 9001</p>
-                    <p className="text-slate-600 font-medium">Estándares Internacionales de Calidad</p>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 border border-slate-100 rounded-lg overflow-hidden">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+              className={`flex group border-slate-100
+                ${index % 2 !== 0 ? "md:border-l" : ""} 
+                ${index > 1 ? "border-t" : ""}
+                ${index > 0 && index % 2 === 0 ? "border-t md:border-t" : ""}
+                ${index === 1 ? "border-t md:border-t-0" : ""}
+              `}
+            >
+              <div className="p-8 sm:p-12 border-r border-slate-100 flex items-center justify-center min-w-[120px] sm:min-w-[160px] bg-white group-hover:bg-slate-50/50 transition-colors">
+                <feature.icon
+                  size={48}
+                  className="text-slate-900 group-hover:scale-110 transition-transform duration-300"
+                  strokeWidth={1}
+                />
               </div>
-            </div>
-            
-            <div className="absolute -top-6 -right-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl z-0" />
-            <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-blue-100 rounded-full blur-3xl z-0" />
-          </motion.div>
+
+              <div className="p-8 sm:p-12 flex flex-col justify-center  bg-white group-hover:bg-slate-50/30 transition-colors">
+                <h3 className="font-bold text-xl text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-slate-500 leading-relaxed font-medium">
+                  {feature.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { NAVBAR } from "@/data/header";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn, ChevronRight } from "lucide-react";
+import { Menu, X, UserRound, ChevronRight } from "lucide-react";
 
 export function Header(): React.ReactElement {
   const [open, setOpen] = useState(false);
@@ -46,7 +46,7 @@ export function Header(): React.ReactElement {
 
             <div className="hidden md:flex items-center gap-4">
               <Button className="rounded-full px-8 bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all duration-300 flex items-center gap-2">
-                <LogIn className="w-4 h-4" />
+                <UserRound className="w-4 h-4" />
                 Iniciar Sesión
               </Button>
             </div>

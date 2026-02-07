@@ -3,6 +3,7 @@
 import { testimonials } from "@/data/testimonial";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardContent } from "../ui/card";
 
 const anonymousFallbackImage =
   "https://placehold.co/48x48/6B7280/FFFFFF?text=AA";
@@ -71,42 +72,46 @@ function Testimonial() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 relative group"
             >
-
-              <div className="flex gap-1 mb-6">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-
-              <p className="text-slate-700 font-medium leading-relaxed mb-8 relative z-10">
-                "{testimonial.text}"
-              </p>
-
-              <div className="flex items-center mt-auto">
-                <div className="relative w-12 h-12 mr-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/10"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.onerror = null;
-                      target.src = anonymousFallbackImage;
-                    }}
-                  />
-                  <div className="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full">
-                    <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+              <Card className="h-full bg-white rounded-3xl shadow-sm border border-slate-100 p-8 flex flex-col group transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
+                <CardHeader className="p-0 mb-6">
+                  <div className="flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={16} className="fill-yellow-400 text-yellow-400" />
+                    ))}
                   </div>
-                </div>
-                <div>
-                  <p className="font-bold text-black leading-none mb-1">
-                    {testimonial.name}
+                </CardHeader>
+                <CardContent className="p-0 flex flex-col h-full">
+                  <CardTitle className="sr-only">Testimonial from {testimonial.name}</CardTitle>
+                  <p className="text-slate-700 font-medium leading-relaxed mb-8 relative z-10 grow">
+                    "{testimonial.text}"
                   </p>
-                  <p className="text-sm text-foreground font-medium">Paciente Verificado</p>
-                </div>
-              </div>
+                  
+                  <div className="flex items-center mt-auto">
+                    <div className="relative w-12 h-12 mr-4">
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-12 h-12 rounded-full object-cover ring-2 ring-primary/10"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null;
+                          target.src = anonymousFallbackImage;
+                        }}
+                      />
+                      <div className="absolute -bottom-1 -right-1 bg-primary text-white p-1 rounded-full">
+                        <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                      </div>
+                    </div>
+                    <div>
+                      <p className="font-bold text-black leading-none mb-1">
+                        {testimonial.name}
+                      </p>
+                      <p className="text-sm text-foreground font-medium">Paciente Verificado</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </motion.div>

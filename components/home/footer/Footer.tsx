@@ -24,7 +24,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 text-slate-400 pt-20 pb-10 px-4 sm:px-6 lg:px-8 border-t border-slate-900">
+    <footer className="bg-black text-slate-400 pt-20 pb-10 px-4 sm:px-6 lg:px-8 border-t border-slate-900">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           {/* Brand Section */}
@@ -88,7 +88,7 @@ export function Footer() {
           <div className="flex gap-8 text-sm">
             <Link href="#" className="hover:text-white transition-colors">Privacidad</Link>
             <Link href="#" className="hover:text-white transition-colors">Términos</Link>
-            <Link href="#" className="hover:text-white transition-colors">Cookies</Link>
+            <Link href="#" className="hover:text-white transition-colors">Contacto</Link>
           </div>
         </div>
       </div>

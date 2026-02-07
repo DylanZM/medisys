@@ -4,8 +4,8 @@ export interface NavItem {
 }
 
 export const NAVBAR: NavItem[] = [
-    { title: "Home", href: "/" },
-    { title: "Doctors", href: "/doctors" },
-    { title: "About", href: "/about" },
-    { title: "Contact", href: "/contact" },
+    { title: "Inicio", href: "/" },
+    { title: "Doctores", href: "/doctors" },
+    { title: "Sobre Nosotros", href: "/about" },
+    { title: "Contacto", href: "contact" },
 ];
