@@ -30,10 +30,5 @@ export const aboutData = {
       color: "bg-emerald-50 text-emerald-600"
     }
   ],
-  stats: [
-    { label: "Años de Experiencia", value: "20+", icon: Clock },
-    { label: "Pacientes Felices", value: "50k+", icon: Users },
-    { label: "Especialistas", value: "85+", icon: Award },
-    { label: "Certificaciones", value: "12+", icon: ShieldCheck }
-  ]
+  
 };

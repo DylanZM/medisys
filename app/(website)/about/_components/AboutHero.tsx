@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 import { aboutData } from "@/data/about";
 
 export const AboutHero = () => {
@@ -11,13 +14,23 @@ export const AboutHero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-black mb-8 leading-[1.1]">
+        <motion.h1 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-5xl md:text-7xl font-bold tracking-tight text-black mb-8 leading-[1.1]"
+        >
           {aboutData.hero.title.split('Salud')[0]}
           <span className="text-primary">Salud</span>
-        </h1>
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium">
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed font-medium"
+        >
           {aboutData.hero.description}
-        </p>
+        </motion.p>
       </div>
     </section>
   );

@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { aboutData } from "@/data/about";
 
 export const StorySection = () => {
@@ -7,7 +10,13 @@ export const StorySection = () => {
     <section className="py-24 bg-slate-50/50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative"
+          >
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl -z-10" />
             <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-5xl shadow-2xl shadow-primary/5">
               <Image
@@ -18,9 +27,15 @@ export const StorySection = () => {
               />
             </div>
             <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-blue-400/10 rounded-full blur-3xl -z-10" />
-          </div>
+          </motion.div>
 
-          <div className="space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-8"
+          >
             <div>
               <span className="text-primary font-bold tracking-widest uppercase text-sm block mb-4">
                 Trayectoria
@@ -40,7 +55,7 @@ export const StorySection = () => {
                 </p>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

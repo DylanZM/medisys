@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 
 export const DoctorHero = () => {
   return (
@@ -9,13 +12,23 @@ export const DoctorHero = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-black mb-6">
+        <motion.h1 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-4xl md:text-6xl font-bold tracking-tight text-black mb-6"
+        >
           Nuestro Equipo de <span className="text-primary">Especialistas</span>
-        </h1>
-        <p className="text-lg text-foreground max-w-2xl mx-auto leading-relaxed font-medium">
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="text-lg text-foreground max-w-2xl mx-auto leading-relaxed font-medium"
+        >
           Contamos con un equipo médico de primer nivel, comprometido con tu bienestar 
           y con la excelencia en cada consulta. Conoce a los profesionales que cuidan de tu salud.
-        </p>
+        </motion.p>
       </div>
     </section>
   );
