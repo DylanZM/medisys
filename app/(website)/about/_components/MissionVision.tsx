@@ -1,0 +1,48 @@
+"use client"
+
+import { motion } from "framer-motion";
+import { aboutData } from "@/data/about";
+
+export const MissionVision = () => {
+  return (
+    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 border border-border-subtle rounded-lg overflow-hidden">
+          {aboutData.missionVision.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+              }}
+              className={`flex group border-border-subtle
+                ${index % 2 !== 0 ? "md:border-l" : ""} 
+                ${index > 1 ? "border-t" : ""}
+              `}
+            >
+              <div className="p-8 sm:p-12 border-r border-border-subtle flex items-center justify-center min-w-[120px] sm:min-w-[160px] bg-white group-hover:bg-bg-muted transition-colors">
+                <item.icon
+                  size={48}
+                  className="text-slate-900 group-hover:scale-110 transition-transform duration-300"
+                  strokeWidth={1}
+                />
+              </div>
+
+              <div className="p-8 sm:p-12 flex flex-col justify-center bg-white group-hover:bg-bg-muted transition-colors">
+                <h3 className="font-bold text-xl text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-text-muted leading-relaxed font-medium">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
