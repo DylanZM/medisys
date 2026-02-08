@@ -57,8 +57,30 @@ class ApiClient {
       });
 
       if (!response.ok) {
-        const errorData: ApiError = await response.json().catch(() => ({}));
-        throw new Error(errorData.detail || errorData.message || `HTTP ${response.status}`);
+        let errorMessage = `HTTP ${response.status}`;
+        
+        try {
+          const errorData: any = await response.json();
+          console.error("API Error Response:", errorData);
+          
+          // Handle different error formats
+          if (typeof errorData.detail === 'string') {
+            errorMessage = errorData.detail;
+          } else if (Array.isArray(errorData.detail)) {
+            // FastAPI validation errors
+            errorMessage = errorData.detail.map((err: any) => 
+              `${err.loc?.join('.') || 'Error'}: ${err.msg}`
+            ).join(', ');
+          } else if (errorData.message) {
+            errorMessage = errorData.message;
+          } else if (typeof errorData === 'string') {
+            errorMessage = errorData;
+          }
+        } catch (e) {
+          console.error("Error parsing error response:", e);
+        }
+        
+        throw new Error(errorMessage);
       }
 
       return await response.json();

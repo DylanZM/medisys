@@ -80,11 +80,12 @@ export function UserFormDialog({ open, onOpenChange, user, onSuccess }: UserForm
 
     try {
       if (isEditing) {
-        const updateData: any = {
-          username: formData.username,
-          email: formData.email,
-          role: formData.role,
-        };
+        // Solo enviar campos que no estén vacíos
+        const updateData: any = {};
+        if (formData.username) updateData.username = formData.username;
+        if (formData.email) updateData.email = formData.email;
+        if (formData.role) updateData.role = formData.role;
+
         await apiClient.put(`/users/${user.id}`, updateData);
       } else {
         await apiClient.post("/users", formData);
@@ -116,7 +117,7 @@ export function UserFormDialog({ open, onOpenChange, user, onSuccess }: UserForm
                 id="username"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                required
+                required={!isEditing}
               />
             </div>
             <div className="grid gap-2">
@@ -126,7 +127,7 @@ export function UserFormDialog({ open, onOpenChange, user, onSuccess }: UserForm
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
+                required={!isEditing}
               />
             </div>
             {!isEditing && (

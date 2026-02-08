@@ -43,7 +43,7 @@ export function PatientFormDialog({ open, onOpenChange, patient, onSuccess }: Pa
     first_name: "",
     last_name: "",
     birth_date: "",
-    gender: "male",
+    gender: "Male",
     phone: "",
   });
   const [error, setError] = useState("");
@@ -55,7 +55,7 @@ export function PatientFormDialog({ open, onOpenChange, patient, onSuccess }: Pa
         first_name: patient.first_name,
         last_name: patient.last_name,
         birth_date: patient.birth_date || "",
-        gender: patient.gender,
+        gender: patient.gender || "Male",
         phone: patient.phone,
       });
     } else {
@@ -63,7 +63,7 @@ export function PatientFormDialog({ open, onOpenChange, patient, onSuccess }: Pa
         first_name: "",
         last_name: "",
         birth_date: "",
-        gender: "male",
+        gender: "Male",
         phone: "",
       });
     }
@@ -77,7 +77,6 @@ export function PatientFormDialog({ open, onOpenChange, patient, onSuccess }: Pa
 
     try {
       if (isEditing) {
-        // Solo enviar campos que no estén vacíos
         const updateData: any = {};
         if (formData.first_name) updateData.first_name = formData.first_name;
         if (formData.last_name) updateData.last_name = formData.last_name;
@@ -87,7 +86,14 @@ export function PatientFormDialog({ open, onOpenChange, patient, onSuccess }: Pa
 
         await apiClient.put(`/patients/${patient.id}`, updateData);
       } else {
-        await apiClient.post("/patients", formData);
+        const createData = {
+          first_name: formData.first_name,
+          last_name: formData.last_name,
+          birth_date: formData.birth_date || null,
+          gender: formData.gender,
+          phone: formData.phone,
+        };
+        await apiClient.post("/patients", createData);
       }
       
       onSuccess();
@@ -146,9 +152,8 @@ export function PatientFormDialog({ open, onOpenChange, patient, onSuccess }: Pa
                   <SelectValue placeholder="Selecciona género" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="male">Masculino</SelectItem>
-                  <SelectItem value="female">Femenino</SelectItem>
-                  <SelectItem value="other">Otro</SelectItem>
+                  <SelectItem value="Male">Masculino</SelectItem>
+                  <SelectItem value="Female">Femenino</SelectItem>
                 </SelectContent>
               </Select>
             </div>
