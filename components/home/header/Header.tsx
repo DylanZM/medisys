@@ -6,10 +6,19 @@ import { usePathname } from "next/navigation";
 import { NAVBAR } from "@/data/header";
 import { Button } from "@/components/ui/button";
 import { Menu, X, UserRound, ChevronRight } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 
 export function Header(): React.ReactElement {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated } = useAuth();
+  
+  // Hide login button if user is authenticated or on dashboard routes
+  const shouldShowLogin = !isAuthenticated && 
+    !pathname.startsWith("/admin") && 
+    !pathname.startsWith("/doctor") && 
+    !pathname.startsWith("/assistant");
+
   return (
     <>
       <header className="sticky top-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-white/20 shadow-sm transition-all duration-300">
@@ -44,7 +53,7 @@ export function Header(): React.ReactElement {
               })}
             </nav>
 
-            {!pathname.startsWith("/admin") && (
+            {shouldShowLogin && (
               <div className="hidden md:flex items-center gap-4">
                 <Link href="/login"> 
                   <Button className="rounded-full px-8 bg-primary hover:bg-primary/90 text-white font-bold shadow-lg shadow-primary/20 transition-all duration-300 flex items-center gap-2">

@@ -17,8 +17,8 @@ import {
 import { navItems, UserRole } from "../_constants/nav-items";
 import { cn } from "@/lib/utils";
 import { LogOut, ChevronRight } from "lucide-react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useAuth } from "@/hooks/use-auth";
 
 interface AppSidebarProps {
   role: UserRole;
@@ -26,6 +26,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({ role }: AppSidebarProps) {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   const roleLabels: Record<UserRole, string> = {
     ADMIN: "Admin",
@@ -86,10 +87,12 @@ export function AppSidebar({ role }: AppSidebarProps) {
             <SidebarMenuButton className="h-16 rounded-xl hover:bg-slate-50 transition-all duration-300 px-3 group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:justify-center">
               <div className="flex items-center gap-3 w-full group-data-[collapsible=icon]:justify-center group-data-[collapsible=icon]:gap-0">
                 <Avatar className="h-10 w-10 border border-primary/20">
-                  <AvatarFallback className="bg-primary/10 text-primary font-bold">AG</AvatarFallback>
+                  <AvatarFallback className="bg-primary/10 text-primary font-bold">
+                    {user?.name ? user.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) : user?.email.slice(0, 2).toUpperCase()}
+                  </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col text-left group-data-[collapsible=icon]:hidden overflow-hidden">
-                  <span className="text-sm font-bold text-slate-900 truncate">Dr. Alejandro Gómez</span>
+                  <span className="text-sm font-bold text-slate-900 truncate">{user?.name || user?.email}</span>
                   <span className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{role}</span>
                 </div>
                 <ChevronRight size={16} className="ml-auto text-slate-400 group-data-[collapsible=icon]:hidden" />
@@ -97,7 +100,10 @@ export function AppSidebar({ role }: AppSidebarProps) {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem className="mt-2">
-            <SidebarMenuButton className="h-10 rounded-xl text-slate-500 hover:bg-red-50 hover:text-red-600 transition-colors px-4 group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:justify-center">
+            <SidebarMenuButton 
+              onClick={logout}
+              className="h-10 rounded-xl text-slate-500 hover:bg-red-50 hover:text-red-600 transition-colors px-4 group-data-[collapsible=icon]:p-0 group-data-[collapsible=icon]:justify-center cursor-pointer"
+            >
               <LogOut size={18} />
               <span className="group-data-[collapsible=icon]:hidden font-medium ml-3">Cerrar Sesión</span>
             </SidebarMenuButton>

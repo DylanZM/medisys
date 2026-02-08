@@ -24,7 +24,7 @@ export default function AdminLayout({
   if (!user) return null;
 
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <div className="flex min-h-screen w-full bg-[#FEFEFF] pt-20">
         <AppSidebar role={user.role} />
         

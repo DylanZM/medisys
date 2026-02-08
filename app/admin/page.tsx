@@ -1,41 +1,111 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Activity, Users, Calendar, TrendingUp } from "lucide-react";
+import { Activity, Users, Calendar, TrendingUp, UserCog } from "lucide-react";
+import { apiClient } from "@/lib/api-client";
+
+interface AdminStats {
+  total_appointments: number;
+  total_patients: number;
+  consultations_month: number;
+  total_users: number;
+}
 
 export default function AdminPage() {
-  const stats = [
+  const [stats, setStats] = useState<AdminStats | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const data = await apiClient.get<AdminStats>("/stats/admin");
+        setStats(data);
+      } catch (err: any) {
+        setError(err.message || "Error al cargar estadísticas");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  const statsCards = stats ? [
     {
       title: "Pacientes Totales",
-      value: "1,284",
+      value: stats.total_patients.toLocaleString(),
       icon: Users,
-      trend: "+12% vs mes pasado",
+      trend: "Total registrados",
       color: "text-blue-600",
       bg: "bg-blue-50"
     },
     {
-      title: "Citas Hoy",
-      value: "24",
+      title: "Citas Totales",
+      value: stats.total_appointments.toLocaleString(),
       icon: Calendar,
-      trend: "4 pendientes",
+      trend: "Todas las citas",
       color: "text-primary",
       bg: "bg-primary/10"
     },
     {
-      title: "Consultas",
-      value: "582",
+      title: "Consultas del Mes",
+      value: stats.consultations_month.toLocaleString(),
       icon: Activity,
-      trend: "+5% vs mes pasado",
+      trend: "Mes actual",
       color: "text-emerald-600",
       bg: "bg-emerald-50"
     },
     {
-      title: "Crecimiento",
-      value: "18%",
-      icon: TrendingUp,
-      trend: "+2% vs promedio",
+      title: "Usuarios del Sistema",
+      value: stats.total_users.toLocaleString(),
+      icon: UserCog,
+      trend: "Total activos",
       color: "text-purple-600",
       bg: "bg-purple-50"
     }
-  ];
+  ] : [];
+
+  if (loading) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900">Panel de Control</h1>
+          <p className="text-slate-500 font-medium">Resumen general de la actividad de la clínica.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <Card key={i} className="border-slate-100 shadow-sm animate-pulse">
+              <CardHeader className="pb-2">
+                <div className="h-4 bg-slate-200 rounded w-24"></div>
+              </CardHeader>
+              <CardContent>
+                <div className="h-8 bg-slate-200 rounded w-16 mb-2"></div>
+                <div className="h-3 bg-slate-200 rounded w-20"></div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-3xl font-black text-slate-900">Panel de Control</h1>
+          <p className="text-slate-500 font-medium">Resumen general de la actividad de la clínica.</p>
+        </div>
+        <Card className="border-red-200 bg-red-50">
+          <CardContent className="pt-6">
+            <p className="text-red-600 font-medium">Error: {error}</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
@@ -45,7 +115,7 @@ export default function AdminPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((stat, index) => (
+        {statsCards.map((stat, index) => (
           <Card key={index} className="border-slate-100 shadow-sm hover:shadow-md transition-shadow duration-300">
             <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
               <CardTitle className="text-sm font-bold text-slate-500 uppercase tracking-wider">

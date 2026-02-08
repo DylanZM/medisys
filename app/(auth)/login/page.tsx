@@ -28,7 +28,7 @@ export default function LoginPage() {
     setError("")
     
     try {
-      await login(user)
+      await login(user, password)
     } catch (err: any) {
       setError(err.message || "Credenciales inválidas")
     }
