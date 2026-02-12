@@ -7,7 +7,6 @@ export default function WebsiteLayout({
 }) {
   return (
     <>
-      <Header />
       {children}
     </>
   );
